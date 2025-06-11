@@ -4,12 +4,12 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 14;        /* gaps between windows */
 static const unsigned int snap      = 3;       /* snap pixel */
-static const int user_bh            = 12;        /* 2 is the default spacing around the bar's font */
+static const int user_bh            = 14;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 10;       /* vertical padding of bar */
-static const int sidepad            = 16;       /* horizontal padding of bar */
-static const char *fonts[] = {"CaskaydiaMonoNerdFont-Bold:size=9.2"};
+static const int sidepad            = 216;       /* horizontal padding of bar */
+static const char *fonts[] = {"CaskaydiaMonoNerdFont-Bold:size=9:style:Bold"};
 static const char dmenufont[] = "CaskaydiaMonoNerdFont-Bold:size=10.6";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -24,15 +24,17 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "","","","","", };
+// static const char *tags[] = { "","","","","", };
+static const char *tags[] = { "あ","い","う","え","お", };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
+	/* class    instance    title       tags mask     isfloating   monitor */
 	{ NULL,     NULL,       NULL,       0,            0,           -1 },
+    { "mpv",    NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -41,11 +43,19 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+// static const Layout layouts[] = {
+//     /* symbol     arrange function */
+//     {"", tile},  /* first entry is default */
+//     {"󰭩", NULL}, /* no layout function means floating behavior */
+//     {"", monocle},
+// };
+//
+
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    {"", tile},  /* first entry is default */
-    {"󰭩", NULL}, /* no layout function means floating behavior */
-    {"", monocle},
+    {"", tile},  /* first entry is default */
+    {"", NULL}, /* no layout function means floating behavior */
+    {"", monocle},
 };
 
 
@@ -64,7 +74,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[] = {"bash", "-c", "st -e bash  &  walrs -R -q ",NULL};
+static const char *termcmd[] = {"st", NULL};
+
 
 #include "movestack.c"
 static const Key keys[] = {
